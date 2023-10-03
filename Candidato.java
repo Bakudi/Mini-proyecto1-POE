@@ -5,13 +5,11 @@ public class Candidato extends Ciudadano {
     private Partido partidoc;
     private String promesas;
     
-Juan-Camilo
-    public Candidato(String nombre,int cedula,Ciudad origen,boolean derecha,Partido partidoc, String promesas){
-=======
+
     public Candidato(String nombre,int cedula,Ciudad origen,boolean derecha,Partido oartidoc, String promesas){
- main
 
         super(nombre,cedula,origen);
+
 
         this.derecha = derecha;
         this.partidoc = partidoc;
