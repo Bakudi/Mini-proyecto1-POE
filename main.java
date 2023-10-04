@@ -6,42 +6,42 @@ public class main {
 
  
         ArrayList <Candidato> listaCandidatos = new ArrayList<Candidato>();
+        boolean condi = true;
+        while(condi == true){
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Bienvenido/a al menú de registro de candidatos\n");
+            System.out.println("1. Insertar candidatos\n2. Actualizar candidato\n3. EliminarCandidato\n4. Buscar candidato por nombre\n5. Listar todos los candidatos.\n");
+            System.out.println("Digite la el número de la opción a realizar: ");
+            int opc = scanner.nextInt();
+            switch(opc){
+                case 1:
 
-
-
-
-        
-  
-
-
-
-
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Bienvenido/a al menú de registro de candidatos\n");
-        System.out.println("1. Insertar candidatos\n2. Actualizar candidato\n3. EliminarCandidato\n4. Buscar candidato por nombre\n5. Listar todos los candidatos.\n6. Terminar con el registro y pasar al menú de votos");
-        System.out.println("Digite la el número de la opción a realizar: ");
-        int opc = scanner.nextInt();
-        switch(opc){
-            case 1:
-
-                Metodos.agregarCandidato(listaCandidatos);
-                break;
-            case 2:
-                Metodos.actualizarCandidato(listaCandidatos);
-                break;
-            case 3:
-                System.out.println("xxx");
-                break;
-            case 4:
-                Metodos.borrarCandidato(listaCandidatos);
-                break;
-            case 5:
-                Metodos.listarCandidato(listaCandidatos);
-                break;
-            case 6:
-                break;
-            default:
-                break;
+                    Metodos.agregarCandidato(listaCandidatos);
+                    break;
+                case 2:
+                    Metodos.actualizarCandidato(listaCandidatos);
+                    break;
+                case 3:
+                    System.out.println("xxx");
+                    break;
+                case 4:
+                    Metodos.borrarCandidato(listaCandidatos);
+                    break;
+                case 5:
+                    Metodos.listarCandidato(listaCandidatos);
+                    break;
+                default:
+                    break;
+            }
+            Scanner scanner2 = new Scanner(System.in);
+            System.out.println("\nDigite el numero (1) si desea volver a el menu de registro de candidatos.\nDigite el numero (0) si desea continuar a el menu de registro de votos.");
+            int opc2 = scanner2.nextInt();
+            if(opc2 == 1){
+                condi = true;
+            }
+            if(opc2 == 0){
+                condi = false;
+            } 
         }
         Scanner scanner2 = new Scanner(System.in);
         System.out.println("Bienvenido/a al menú de registro de votos por candidato\n");
@@ -59,6 +59,7 @@ public class main {
         }
 
         Metodos.contarVotos(listaCandidatos);
+        Metodos.cadidatoPartido(listaCandidatos);
+        Metodos.top3Candidatos(listaCandidatos);
 
-}
 }

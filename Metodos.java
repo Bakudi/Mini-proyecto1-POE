@@ -1,5 +1,9 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Metodos {
@@ -145,10 +149,66 @@ public class Metodos {
             while(numeroMayor == lista.get(j).getVotos()){
                  System.out.println("El gandor de las votaciones fue: " + lista.get(j).nombre+"\n");
                  System.out.println("con numero de cedula: " + lista.get(j).cedula+"\n");
+                 System.out.println("Las propuestas del candidato ganador: \n" + lista.get(j).getPromesas()+"\n");
                  j++;
             }
         }
     }
+    public static void cadidatoPartido(ArrayList<Candidato> lista){
+        // Mapa para realizar un seguimiento del recuento de candidatos por partido
+        Map<String, Integer> recuentoPorPartido = new HashMap<>();
+
+        
+        for (Candidato candidato : lista) {
+            String partido = String.valueOf(candidato.getPartidoc());
+            recuentoPorPartido.put(partido, recuentoPorPartido.getOrDefault(partido, 0) + 1);
+        }
+
+        // Encuentra el partido con el recuento más alto
+        String partidoConMasCandidatos = null;
+        int maxRecuento = 0;
+
+        for (Map.Entry<String, Integer> entry : recuentoPorPartido.entrySet()) {
+            if (entry.getValue() > maxRecuento) {
+                maxRecuento = entry.getValue();
+                partidoConMasCandidatos = entry.getKey();
+            }
+        }
+
+        
+        if (partidoConMasCandidatos != null) {
+            System.out.println("El partido con más candidatos es: " + partidoConMasCandidatos);
+        } else {
+            System.out.println("No se encontraron candidatos.");
+        }
+    }
+
+    public static void top3Candidatos(ArrayList<Candidato> lista){
+        // Mapa para realizar un seguimiento del recuento de candidatos por ciudad de origen
+        Map<Ciudad, Integer> recuentoPorCiudad = new HashMap<>();
+
+        
+        for (Candidato candidato : lista) {
+            Ciudad ciudadOrigen = candidato.getOrigen();
+            recuentoPorCiudad.put(ciudadOrigen, recuentoPorCiudad.getOrDefault(ciudadOrigen, 0) + 1);
+        }
+
+        // Ordena las ciudades por el recuento de candidatos en orden ascendente
+        List<Map.Entry<Ciudad, Integer>> listaOrdenada = new ArrayList<>(recuentoPorCiudad.entrySet());
+        listaOrdenada.sort(Comparator.comparing(Map.Entry::getValue));
+
+        
+        List<Ciudad> top3CiudadesMenosCandidatos = new ArrayList<>();
+        int numCiudades = listaOrdenada.size();
+        for (int i = 0; i < Math.min(3, numCiudades); i++) {
+            top3CiudadesMenosCandidatos.add(listaOrdenada.get(i).getKey());
+        }
+
+        
+        System.out.println("Top 3 ciudades con menos candidatos:");
+        for (Ciudad ciudad : top3CiudadesMenosCandidatos) {
+            System.out.println(ciudad);
+        }
+    }
 
 }
-
