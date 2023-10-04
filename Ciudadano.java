@@ -2,11 +2,13 @@ public class Ciudadano {
     String nombre;
     int cedula;
     Ciudad origen;
+    
 
     public Ciudadano(String nombre,int cedula,Ciudad origen){
         this.nombre = nombre;
         this.cedula = cedula;
         this.origen = origen;
+        
 
     }
 
@@ -28,7 +30,5 @@ public class Ciudadano {
     public void setOrigen(Ciudad origen) {
         this.origen = origen;
     }
-
-    
 
 }
