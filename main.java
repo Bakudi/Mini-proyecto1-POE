@@ -60,6 +60,7 @@ public class main {
 
         Metodos.contarVotos(listaCandidatos);
         Metodos.cadidatoPartido(listaCandidatos);
+        Metodos.top3Candidatos(listaCandidatos);
 
 }
 }

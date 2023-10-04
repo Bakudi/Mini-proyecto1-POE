@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -157,7 +158,7 @@ public class Metodos {
         // Mapa para realizar un seguimiento del recuento de candidatos por partido
         Map<String, Integer> recuentoPorPartido = new HashMap<>();
 
-        // Recorre la lista de candidatos y actualiza el recuento por partido
+        
         for (Candidato candidato : lista) {
             String partido = String.valueOf(candidato.getPartidoc());
             recuentoPorPartido.put(partido, recuentoPorPartido.getOrDefault(partido, 0) + 1);
@@ -174,11 +175,39 @@ public class Metodos {
             }
         }
 
-        // Imprime el nombre del partido con más candidatos
+        
         if (partidoConMasCandidatos != null) {
             System.out.println("El partido con más candidatos es: " + partidoConMasCandidatos);
         } else {
             System.out.println("No se encontraron candidatos.");
+        }
+    }
+
+    public static void top3Candidatos(ArrayList<Candidato> lista){
+        // Mapa para realizar un seguimiento del recuento de candidatos por ciudad de origen
+        Map<Ciudad, Integer> recuentoPorCiudad = new HashMap<>();
+
+        
+        for (Candidato candidato : lista) {
+            Ciudad ciudadOrigen = candidato.getOrigen();
+            recuentoPorCiudad.put(ciudadOrigen, recuentoPorCiudad.getOrDefault(ciudadOrigen, 0) + 1);
+        }
+
+        // Ordena las ciudades por el recuento de candidatos en orden ascendente
+        List<Map.Entry<Ciudad, Integer>> listaOrdenada = new ArrayList<>(recuentoPorCiudad.entrySet());
+        listaOrdenada.sort(Comparator.comparing(Map.Entry::getValue));
+
+        
+        List<Ciudad> top3CiudadesMenosCandidatos = new ArrayList<>();
+        int numCiudades = listaOrdenada.size();
+        for (int i = 0; i < Math.min(3, numCiudades); i++) {
+            top3CiudadesMenosCandidatos.add(listaOrdenada.get(i).getKey());
+        }
+
+        
+        System.out.println("Top 3 ciudades con menos candidatos:");
+        for (Ciudad ciudad : top3CiudadesMenosCandidatos) {
+            System.out.println(ciudad);
         }
     }
 
