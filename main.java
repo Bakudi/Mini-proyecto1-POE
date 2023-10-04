@@ -3,7 +3,11 @@ import java.util.Scanner;
 
 public class main {
     public static void main(String[] args) throws Exception{
+
+        
         ArrayList <Candidato> listaCandidatos = new ArrayList<Candidato>();
+
+
         Byte num;
         Scanner scanner = new Scanner(System.in);
         System.out.println("Bienvenido/a al menú de registro de candidatos\n");
@@ -27,10 +31,26 @@ public class main {
                 Metodos.listarCandidato(listaCandidatos);
                 break;
             case 6:
-                Metodos.votar();
+                break;
             default:
                 break;
         }
+        Scanner scanner2 = new Scanner(System.in);
+        System.out.println("Bienvenido/a al menú de registro de votos por candidato\n");
+        System.out.println("1. Insertar votos de candidatos\n2. Mostrar resultados finales.\n");
+        System.out.println("Digite la el número de la opción a realizar: ");
+        int opc2 = scanner2.nextInt();
+        switch(opc2){
+            case 1:
+                System.out.println("+++");
+                break;
+            case 2: 
+                break;
+            default:
+                break;
+        }
+
+        Metodos.contarVotos(listaCandidatos);
     
     
 }

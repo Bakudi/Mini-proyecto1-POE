@@ -4,20 +4,20 @@ public class Candidato extends Ciudadano {
     private boolean derecha;
     private Partido partidoc;
     private String promesas;
+    private int votos = 0;
     
 
-    public Candidato(String nombre,int cedula,Ciudad origen,boolean derecha,Partido oartidoc, String promesas){
+    
 
-        super(nombre,cedula,origen);
+    public Candidato(String nombre, int cedula, Ciudad origen, boolean derecha, Partido partidoc,
+			String promesas, int votos) {
+		super(nombre, cedula, origen);
+		this.derecha = derecha;
+		this.partidoc = partidoc;
+		this.promesas = promesas;
+	}
 
-
-        this.derecha = derecha;
-        this.partidoc = partidoc;
-        this.promesas = promesas;
-
-        }
-
-    public boolean isDerecha() {
+	public boolean isDerecha() {
         return derecha;
     }
 
@@ -41,6 +41,15 @@ public class Candidato extends Ciudadano {
         this.promesas = promesas;
     }
 
+	public int getVotos() {
+		return votos;
+	}
+
+	public void setVotos(int votos) {
+		this.votos = votos;
+	}
+
+    
 
     }
 

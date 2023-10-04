@@ -1,9 +1,10 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Metodos {
 
-    public static void borrarCandidato(ArrayList<Candidato> lista){
+	public static void borrarCandidato(ArrayList<Candidato> lista){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Ingrese el nombre del candidato que deseas borrar: ");
         Object borrar = scanner.nextLine();
@@ -17,30 +18,19 @@ public class Metodos {
         }
     }
 
-    public static void votar(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Bienvenido/a al menú de registro de votos por candidato\n");
-        System.out.println("1. Insertar votos de candidatos\n2. Mostrar resultados finales.\n");
-        System.out.println("Digite la el número de la opción a realizar: ");
-        int opc = scanner.nextInt();
-        switch(opc){
-            case 1:
-                System.out.println("+++");
-                break;
-            case 2: 
-                break;
-            default:
-                break;
+    public static void contarVotos(ArrayList<Candidato> lista){
+        for(int i=0; i< lista.size(); i++){
+            ArrayList<Integer> todosVotos  = new ArrayList<>();
+            todosVotos.add(lista.get(i).getVotos());
+            int numeroMayor = Collections.max(todosVotos);
+            int j = 0;
+            while(numeroMayor == lista.get(j).getVotos()){
+                 System.out.println("El gandor de las votaciones fue: " + lista.get(j).nombre+"\n");
+                 System.out.println("con numero de cedula: " + lista.get(j).cedula+"\n");
+                 j++;
+            }
         }
     }
 
-    public int getVotos() {
-        return votos;
-    }
-
-    public void setVotos(int votos) {
-        this.votos = votos;
-    }
-    
 }
 
