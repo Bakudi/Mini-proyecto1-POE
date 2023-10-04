@@ -63,4 +63,3 @@ public class main {
         Metodos.top3Candidatos(listaCandidatos);
 
 }
-}
