@@ -3,8 +3,17 @@ import java.util.Scanner;
 
 public class main {
     public static void main(String[] args) throws Exception{
+
  
         ArrayList <Candidato> listaCandidatos = new ArrayList<Candidato>();
+
+
+
+
+        
+  
+
+
 
 
         Scanner scanner = new Scanner(System.in);
@@ -14,6 +23,7 @@ public class main {
         int opc = scanner.nextInt();
         switch(opc){
             case 1:
+
                 Metodos.agregarCandidato(listaCandidatos);
                 break;
             case 2:
@@ -49,5 +59,6 @@ public class main {
         }
 
         Metodos.contarVotos(listaCandidatos);
+
 }
 }

@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class Metodos {
 
-
     public static void agregarCandidato(ArrayList<Candidato> lista){
         Candidato p = null;
         System.out.println("A continuacion agregue la informacion del candidato en el orden indicado");
@@ -119,6 +118,10 @@ public class Metodos {
 
     }
 
+
+  
+
+  
 	public static void borrarCandidato(ArrayList<Candidato> lista){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Ingrese el nombre del candidato que deseas borrar: ");
