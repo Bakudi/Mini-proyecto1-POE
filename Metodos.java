@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -123,7 +124,21 @@ public class Metodos {
     }
 
 
-  
+    public static void buscarNombreCandidato(ArrayList<Candidato> lista){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ingrese el nombre del candidato que desea consultar: ");
+        String nomCandidato = scanner.nextLine();
+        for(int i=0 ; i< lista.size(); i++){
+            if(lista.get(i).getNombre() == nomCandidato){
+                System.out.println("Nombre : " + lista.get(i).getNombre() + "\n");
+                System.out.println("Cédula : " + lista.get(i).getCedula() + "\n");
+                System.out.println("Origen : " + lista.get(i).getOrigen() + "\n");
+                System.out.println("Candidato de : " + lista.get(i).isDerecha() + "\n");
+                System.out.println("Partido político : " + lista.get(i).getPartidoc() + "\n");
+                System.out.println("Promesas : " + lista.get(i).getPromesas() + "\n");
+            }
+        }
+    }
 
   
 	public static void borrarCandidato(ArrayList<Candidato> lista){
@@ -140,20 +155,36 @@ public class Metodos {
         }
     }
 
+    public static void asignarVotos(ArrayList<Candidato> lista){
+        Scanner scanner = new Scanner(System.in);
+        int j = 0;
+        System.out.println("Comienza la asignación de votos.\n");
+        for(int i=0 ; i< lista.size(); i++){
+            System.out.println("Ingrese la cantidad de votos del candidato " + lista.get(i).getNombre());
+            j = scanner.nextInt();
+            lista.get(i).setVotos(j);
+            System.out.println(j + "votos para el candidato " + lista.get(i).getNombre() + "registrados.\n");
+            j = 0;
+        }
+        
+    }
+
     public static void contarVotos(ArrayList<Candidato> lista){
+        ArrayList<Integer> todosVotos  = new ArrayList<>();
         for(int i=0; i< lista.size(); i++){
-            ArrayList<Integer> todosVotos  = new ArrayList<>();
             todosVotos.add(lista.get(i).getVotos());
-            int numeroMayor = Collections.max(todosVotos);
-            int j = 0;
-            while(numeroMayor == lista.get(j).getVotos()){
-                 System.out.println("El gandor de las votaciones fue: " + lista.get(j).nombre+"\n");
-                 System.out.println("con numero de cedula: " + lista.get(j).cedula+"\n");
-                 System.out.println("Las propuestas del candidato ganador: \n" + lista.get(j).getPromesas()+"\n");
-                 j++;
+        }
+        int numeroMayor = Collections.max(todosVotos);
+        System.out.println("prueba"+numeroMayor);
+        for(int i=0; i< lista.size(); i++){
+            if(numeroMayor == lista.get(i).getVotos()){
+                System.out.println("El gandor de las votaciones fue: " + lista.get(i).nombre+"\n");
+                System.out.println("con numero de cedula: " + lista.get(i).cedula+"\n");
+                System.out.println("Propuestas de " + lista.get(i).nombre +" : "+ lista.get(i).getPromesas()+"\n");
             }
         }
     }
+
     public static void cadidatoPartido(ArrayList<Candidato> lista){
         // Mapa para realizar un seguimiento del recuento de candidatos por partido
         Map<String, Integer> recuentoPorPartido = new HashMap<>();
@@ -204,11 +235,19 @@ public class Metodos {
             top3CiudadesMenosCandidatos.add(listaOrdenada.get(i).getKey());
         }
 
-        
+        Collections.reverse(top3CiudadesMenosCandidatos);
         System.out.println("Top 3 ciudades con menos candidatos:");
+        int posicion = 1;
         for (Ciudad ciudad : top3CiudadesMenosCandidatos) {
-            System.out.println(ciudad);
+            System.out.println("top " + posicion +"  "+ ciudad);
+            posicion++;
         }
     }
 
 }
+
+
+
+
+
+

@@ -22,10 +22,11 @@ public class main {
                     Metodos.actualizarCandidato(listaCandidatos);
                     break;
                 case 3:
-                    System.out.println("xxx");
+                    Metodos.borrarCandidato(listaCandidatos);
                     break;
                 case 4:
-                    Metodos.borrarCandidato(listaCandidatos);
+                    Metodos.buscarNombreCandidato(listaCandidatos);
+
                     break;
                 case 5:
                     Metodos.listarCandidato(listaCandidatos);
@@ -50,7 +51,9 @@ public class main {
         int opc2 = scanner2.nextInt();
         switch(opc2){
             case 1:
-                System.out.println("+++");
+
+                Metodos.asignarVotos(listaCandidatos);
+
                 break;
             case 2: 
                 break;
@@ -61,5 +64,8 @@ public class main {
         Metodos.contarVotos(listaCandidatos);
         Metodos.cadidatoPartido(listaCandidatos);
         Metodos.top3Candidatos(listaCandidatos);
+
+
+    }
 
 }
