@@ -26,6 +26,7 @@ public class main {
                     break;
                 case 4:
                     Metodos.buscarNombreCandidato(listaCandidatos);
+
                     break;
                 case 5:
                     Metodos.listarCandidato(listaCandidatos);
@@ -50,7 +51,9 @@ public class main {
         int opc2 = scanner2.nextInt();
         switch(opc2){
             case 1:
+
                 Metodos.asignarVotos(listaCandidatos);
+
                 break;
             case 2: 
                 break;
@@ -62,5 +65,7 @@ public class main {
         Metodos.cadidatoPartido(listaCandidatos);
         Metodos.top3Candidatos(listaCandidatos);
 
+
     }
+
 }

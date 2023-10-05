@@ -4,9 +4,12 @@ public class Candidato extends Ciudadano {
     private boolean derecha;
     private Partido partidoc;
     private String promesas;
+
+
     private int votos;
     
-    public Candidato(String nombre,int cedula,Ciudad origen,boolean derecha,Partido partidoc, String promesas, int votos){
+    public Candidato(String nombre,int cedula,Ciudad origen,boolean derecha,Partido oartidoc, String promesas, int votos){
+
 
         super(nombre,cedula,origen);
 
