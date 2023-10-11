@@ -26,7 +26,6 @@ public class main {
                     break;
                 case 4:
                     Metodos.buscarNombreCandidato(listaCandidatos);
-
                     break;
                 case 5:
                     Metodos.listarCandidato(listaCandidatos);
