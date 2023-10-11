@@ -36,6 +36,7 @@ public class Metodos {
         System.out.println("inserte el partido del candidato(solo partidos validos en colombia)");
         var nombrepartido = teclado.next();
         partido = Partido.obtenerpartido(nombrepartido);
+        
         if(partido == null){
             System.out.println("partido invalido, intentelo de nuevo"); }}
 
@@ -186,35 +187,33 @@ public class Metodos {
         }
     }
 
-    public static void cadidatoPartido(ArrayList<Candidato> lista){
-        // Mapa para realizar un seguimiento del recuento de candidatos por partido
-        Map<String, Integer> recuentoPorPartido = new HashMap<>();
-
-        
+    public static void cadidatoPartido(ArrayList<Candidato> lista) {
+        // Usamos un mapa para contabilizar los candidatos por partido.
+        Map<Partido, Integer> conteoPartidos = new HashMap<>();
+    
         for (Candidato candidato : lista) {
-            String partido = String.valueOf(candidato.getPartidoc());
-            recuentoPorPartido.put(partido, recuentoPorPartido.getOrDefault(partido, 0) + 1);
+            Partido partido = candidato.getPartidoc();
+            conteoPartidos.put(partido, conteoPartidos.getOrDefault(partido, 0) + 1);
         }
-
-        // Encuentra el partido con el recuento más alto
-        String partidoConMasCandidatos = null;
-        int maxRecuento = 0;
-
-        for (Map.Entry<String, Integer> entry : recuentoPorPartido.entrySet()) {
-            if (entry.getValue() > maxRecuento) {
-                maxRecuento = entry.getValue();
-                partidoConMasCandidatos = entry.getKey();
+    
+        // Encontramos el partido con más candidatos inscritos.
+        Partido partidoGanador = null;
+        int maxCandidatos = 0;
+    
+        for (Map.Entry<Partido, Integer> entry : conteoPartidos.entrySet()) {
+            if (entry.getValue() > maxCandidatos) {
+                maxCandidatos = entry.getValue();
+                partidoGanador = entry.getKey();
             }
         }
-
-        
-        if (partidoConMasCandidatos != null) {
-            System.out.println("El partido con más candidatos es: " + partidoConMasCandidatos);
+    
+        if (partidoGanador != null) {
+            System.out.println("El partido con más candidatos es: " + partidoGanador);
         } else {
             System.out.println("No se encontraron candidatos.");
         }
     }
-
+    
     public static void top3Candidatos(ArrayList<Candidato> lista){
         // Mapa para realizar un seguimiento del recuento de candidatos por ciudad de origen
         Map<Ciudad, Integer> recuentoPorCiudad = new HashMap<>();
@@ -236,7 +235,6 @@ public class Metodos {
             top3CiudadesMenosCandidatos.add(listaOrdenada.get(i).getKey());
         }
 
-        Collections.reverse(top3CiudadesMenosCandidatos);
         System.out.println("Top 3 ciudades con menos candidatos:");
         int posicion = 1;
         for (Ciudad ciudad : top3CiudadesMenosCandidatos) {
