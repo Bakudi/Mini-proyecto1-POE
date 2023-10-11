@@ -147,6 +147,7 @@ public class Metodos {
 	public static void borrarCandidato(ArrayList<Candidato> lista){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Ingrese el nombre del candidato que deseas borrar: ");
+
         String borrar = scanner.nextLine();
         Iterator<Candidato> iterator = lista.iterator();
         while (iterator.hasNext()){
