@@ -30,6 +30,9 @@ public class main {
                 case 5:
                     Metodos.listarCandidato(listaCandidatos);
                     break;
+                case 6:
+                Metodos.mostrarListaCandidatos(listaCandidatos);
+                break;    
                 default:
                     break;
             }
