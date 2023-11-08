@@ -6,8 +6,19 @@ import javax.swing.JPanel;
 import javax.swing.LayoutStyle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class GUI extends JFrame implements ActionListener {
+    ArrayList <Candidato> listaCandidatos = new ArrayList<Candidato>();
+    public void agregarCandidato(Candidato candidato) {
+        listaCandidatos.add(candidato);
+    }
+
+    public List<Candidato> getListaCandidatos() {
+        return listaCandidatos;
+    }
     private JLabel jLabel1;
     private JButton jButton1;
     private JButton jButton2;
@@ -101,11 +112,16 @@ public class GUI extends JFrame implements ActionListener {
             Agregarventana newframe = new Agregarventana();
            newframe.setVisible(true);
             this.dispose();
-            
-        } else if (e.getSource() == jButton3) {
-            // Lógica para el botón 3
         }
+        
+        if (e.getSource() == jButton2) {
+            Actualizar newframe = new Actualizar();
+           newframe.setVisible(true);
+            this.dispose();
+        } 
     }
+
+    
 
     public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
