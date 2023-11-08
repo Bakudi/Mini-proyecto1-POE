@@ -12,6 +12,7 @@ import java.util.Scanner;
 public class Metodos {
 
     public static void agregarCandidato(ArrayList<Candidato> lista){
+
         Candidato p = null;
         System.out.println("A continuacion agregue la informacion del candidato en el orden indicado");
         Scanner teclado = new Scanner(System.in);
@@ -42,7 +43,8 @@ public class Metodos {
             System.out.println("partido invalido, intentelo de nuevo"); }}
 
         System.out.println("inserte las ment... promesas del candidato");
-        var promesas = teclado.next();
+        teclado.nextLine();
+        var promesas = teclado.nextLine();
         var votos = 0;
         p = new Candidato(nombre,cedula,origen,derecha,partido, promesas, votos);
         lista.add(p);
@@ -104,7 +106,7 @@ public class Metodos {
                 candidato.setDerecha(nuevoderecha);
                 break;
             case "partido":
-                System.out.println("inserte el nuevo nombre");
+                System.out.println("inserte el nuevo partido");
                 String nuevopartido = teclado.next();
                 Partido partidoenum = Partido.obtenerpartido(nuevopartido);
 
