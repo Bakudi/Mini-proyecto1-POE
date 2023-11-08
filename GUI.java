@@ -4,7 +4,6 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,6 +15,7 @@ public class GUI extends JFrame implements ActionListener {
     private JButton jButton4;
     private JButton jButton5;
     private JButton jButton6;
+    private Agregarventana agregarventana;
 
     public GUI() {
         initComponents();
@@ -98,7 +98,10 @@ public class GUI extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == jButton1) {
-            // Lógica para el botón 1
+            Agregarventana newframe = new Agregarventana();
+           newframe.setVisible(true);
+            this.dispose();
+            
         } else if (e.getSource() == jButton3) {
             // Lógica para el botón 3
         }
