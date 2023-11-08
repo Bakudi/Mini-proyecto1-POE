@@ -1,11 +1,13 @@
+
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class main {
     public static void main(String[] args) throws Exception{
 
- 
-        ArrayList <Candidato> listaCandidatos = new ArrayList<Candidato>();
+  // para ejecutar el codigo dirigirse al documento GUI
+       /*  ArrayList <Candidato> listaCandidatos = new ArrayList<Candidato>();
         boolean condi = true;
         while(condi == true){
             Scanner scanner = new Scanner(System.in);
@@ -67,7 +69,7 @@ public class main {
         Metodos.cadidatoPartido(listaCandidatos);
         Metodos.top3Candidatos(listaCandidatos);
 
-
+*/
     }
 
 }
