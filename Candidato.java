@@ -7,21 +7,6 @@ public class Candidato extends Ciudadano {
 
     private int votos;
     
-    public Candidato(String nombre,int cedula,Ciudad origen,boolean derecha,Partido oartidoc, String promesas, int votos){
-
-        super(nombre,cedula,origen);
-
-        this.derecha = derecha;
-        this.partidoc = partidoc;
-        this.promesas = promesas;
-        this.votos = votos;
-
- 
-    
-
-    
-
-
     public Candidato(String nombre, int cedula, Ciudad origen, boolean derecha, Partido partidoc,
 			String promesas, int votos) {
 		super(nombre, cedula, origen);
