@@ -1,4 +1,5 @@
 
+
 public class BUSCAR extends javax.swing.JDialog {
 
     public BUSCAR() {
@@ -108,3 +109,4 @@ public class BUSCAR extends javax.swing.JDialog {
     private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }
+

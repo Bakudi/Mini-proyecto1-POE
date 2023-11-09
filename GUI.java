@@ -1,3 +1,4 @@
+
 import javax.swing.GroupLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -67,7 +68,7 @@ public class GUI extends JFrame implements ActionListener {
 
 
         jButton6.setText("gestión de votos");
-        // ActionListener para jButton6
+        jButton6.addActionListener(this);
 
        GroupLayout layout = new GroupLayout(panel);
         panel.setLayout(layout);
@@ -137,7 +138,13 @@ public class GUI extends JFrame implements ActionListener {
             listarGUI.setVisible(true);
             this.dispose();
 
-        } 
+        }
+        if (e.getSource() == jButton6) {
+            AgregarVotos  newframe= new AgregarVotos();
+            newframe.setVisible(true);
+            this.dispose();
+
+        }  
     }
 
     
