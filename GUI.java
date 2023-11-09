@@ -16,6 +16,8 @@ public class GUI extends JFrame implements ActionListener {
         listaCandidatos.add(candidato);
     }
 
+    
+
     public List<Candidato> getListaCandidatos() {
         return listaCandidatos;
     }
@@ -53,8 +55,8 @@ public class GUI extends JFrame implements ActionListener {
         jButton1.addActionListener(this);
 
         jButton2.setText("actualizar candidato");
-        // ActionListener para jButton2
-
+        jButton2.addActionListener(this);
+        
         jButton3.setText("eliminar candidato");
         jButton3.addActionListener(this);
 
@@ -65,7 +67,7 @@ public class GUI extends JFrame implements ActionListener {
         // ActionListener para jButton5
 
         jButton6.setText("gestión de votos");
-        // ActionListener para jButton6
+        jButton5.addActionListener(this);
 
        GroupLayout layout = new GroupLayout(panel);
         panel.setLayout(layout);
@@ -109,15 +111,36 @@ public class GUI extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == jButton1) {
-            Agregarventana newframe = new Agregarventana();
+            Agregarventana newframe = new Agregarventana(this,getListaCandidatos());
            newframe.setVisible(true);
             this.dispose();
         }
         
         if (e.getSource() == jButton2) {
-            Actualizar newframe = new Actualizar();
+            Actualizar newframe = new Actualizar(this,getListaCandidatos());
            newframe.setVisible(true);
             this.dispose();
+<<<<<<< Updated upstream
+=======
+            System.out.println("1");
+
+        }
+        if (e.getSource() == jButton3) {
+            BORRAR  borrarGUI = new BORRAR();
+            borrarGUI.setVisible(true);
+            this.dispose();
+        } 
+        if (e.getSource() == jButton4) {
+            BUSCAR  buscarGUI = new BUSCAR();
+            buscarGUI.setVisible(true);
+            this.dispose();
+        } 
+        if (e.getSource() == jButton5) {
+            LISTAR  listarGUI = new LISTAR();
+            listarGUI.setVisible(true);
+            this.dispose();
+
+>>>>>>> Stashed changes
         } 
     }
 
