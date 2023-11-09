@@ -1,3 +1,4 @@
+
 public class Candidato extends Ciudadano {
     
 
@@ -56,3 +57,4 @@ public class Candidato extends Ciudadano {
       
 
     }
+
