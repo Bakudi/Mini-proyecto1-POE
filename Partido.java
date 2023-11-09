@@ -11,4 +11,5 @@ public enum Partido {
             if (partido.name().equalsIgnoreCase(nombrepartido)) {
                 return partido;}}
                 return null;}
+
 }

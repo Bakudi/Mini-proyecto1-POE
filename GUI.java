@@ -61,10 +61,12 @@ public class GUI extends JFrame implements ActionListener {
         jButton3.addActionListener(this);
 
         jButton4.setText("buscar por nombre");
-        // ActionListener para jButton4
+
+        jButton4.addActionListener(this);
 
         jButton5.setText("lista de candidatos");
-        // ActionListener para jButton5
+        jButton5.addActionListener(this);
+
 
         jButton6.setText("gestión de votos");
         jButton5.addActionListener(this);
@@ -120,9 +122,7 @@ public class GUI extends JFrame implements ActionListener {
             Actualizar newframe = new Actualizar(this,getListaCandidatos());
            newframe.setVisible(true);
             this.dispose();
-<<<<<<< Updated upstream
-=======
-            System.out.println("1");
+
 
         }
         if (e.getSource() == jButton3) {
@@ -140,7 +140,7 @@ public class GUI extends JFrame implements ActionListener {
             listarGUI.setVisible(true);
             this.dispose();
 
->>>>>>> Stashed changes
+
         } 
     }
 
