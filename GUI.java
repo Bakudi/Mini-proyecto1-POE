@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 
 public class GUI extends JFrame implements ActionListener {
+
     static List<Candidato> listaCandidatos = new ArrayList<>();
     
     public static List<Candidato> getListaCandidatos() {
@@ -23,6 +24,7 @@ public class GUI extends JFrame implements ActionListener {
     public static void setListaCandidatos(List<Candidato> listaCandidatos) {
         GUI.listaCandidatos = listaCandidatos;
     }
+
 
 
     private JLabel jLabel1;
