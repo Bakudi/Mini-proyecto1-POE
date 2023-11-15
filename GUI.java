@@ -1,3 +1,4 @@
+
 import javax.swing.GroupLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -7,6 +8,7 @@ import javax.swing.LayoutStyle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -15,11 +17,14 @@ import java.util.stream.Collectors;
 
 public class GUI extends JFrame implements ActionListener {
     static ArrayList <Candidato> listaCandidatos = new ArrayList<Candidato>();
+
     public void agregarCandidato(Candidato candidato) {
         listaCandidatos.add(candidato);
     }
 
+
     public static List<Candidato> getListaCandidatos() {
+
         return listaCandidatos;
     }
     private JLabel jLabel1;
@@ -57,8 +62,9 @@ public class GUI extends JFrame implements ActionListener {
         jButton1.addActionListener(this);
 
         jButton2.setText("actualizar candidato");
-        // ActionListener para jButton2
 
+        jButton2.addActionListener(this);
+        
         jButton3.setText("eliminar candidato");
         jButton3.addActionListener(this);
 
@@ -72,6 +78,7 @@ public class GUI extends JFrame implements ActionListener {
 
         jButton6.setText("gestión de votos");
         jButton6.addActionListener(this);
+
 
        GroupLayout layout = new GroupLayout(panel);
         panel.setLayout(layout);
@@ -115,13 +122,16 @@ public class GUI extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == jButton1) {
-            Agregarventana newframe = new Agregarventana();
+
+            Agregarventana newframe = new Agregarventana(this,getListaCandidatos());
+
            newframe.setVisible(true);
             this.dispose();
         }
         
         if (e.getSource() == jButton2) {
-            Actualizar newframe = new Actualizar();
+
+            Actualizar newframe = new Actualizar(this,getListaCandidatos());
            newframe.setVisible(true);
             this.dispose();
 
@@ -190,6 +200,7 @@ public class GUI extends JFrame implements ActionListener {
 
         // Tomar las primeras 3 ciudades
         return ciudadesOrdenadas.size() > 2 ? ciudadesOrdenadas.subList(0, 3) : ciudadesOrdenadas;
+
     }
 
     
