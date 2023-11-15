@@ -27,7 +27,8 @@ public class Agregarventana extends JPanel implements ActionListener {
     private JTextField jTextField6;
     private GUI gui;
 
-    public Agregarventana() {
+    public Agregarventana(GUI gui) {
+        this.gui = gui;
         initComponents();
     }
 
@@ -156,24 +157,29 @@ public class Agregarventana extends JPanel implements ActionListener {
         frame.setVisible(true);
     }
 
-    private void jButton2ActionPerformed(ActionEvent evt) {
-        if(evt.getSource() == jButton2){
-        String Nombre = jTextField1.getText();
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == jButton2){
+            String Nombre = jTextField1.getText();
             int cedula = Integer.parseInt(jTextField2.getText());
             Ciudad origen = obtenerCiudad(jTextField3.getText());
             Boolean derecha = Boolean.parseBoolean(jTextField4.getText().toLowerCase());
             Partido partido = obtenerPartidoDesdeTexto(jTextField5.getText());
             String promesas = jTextField6.getText();
             int votos = 0;
-
-            Candidato candidato = new Candidato(Nombre,cedula,origen,derecha,partido,promesas,votos);
+    
+            Candidato candidato = new Candidato(Nombre, cedula, origen, derecha, partido, promesas, votos);
             gui.agregarCandidato(candidato);
-    }}
-
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == jButton1) {
-            GUI ventana = new GUI();
-           ventana.setVisible(true);
+    
+            // Cierra la ventana actual y muestra la GUI principal
+            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            frame.dispose();
+            gui.setVisible(true);
+            }
+            
+            if (e.getSource() == jButton1) {
+            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            frame.dispose();
+            gui.setVisible(true); 
         }
         }
 
@@ -188,7 +194,8 @@ public class Agregarventana extends JPanel implements ActionListener {
     }
 
     public static void main(String[] args) throws Exception {
-        new Agregarventana();
+        GUI gui = new GUI();
+        new Agregarventana(gui);
     }
 }
     
