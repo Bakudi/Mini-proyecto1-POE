@@ -1,4 +1,3 @@
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -163,4 +162,3 @@ public class BORRAR extends javax.swing.JDialog implements ActionListener {
     private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }
-

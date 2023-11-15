@@ -1,8 +1,17 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AgregarVotos extends JFrame implements ActionListener {
+
+    private GUI gui;  // Agrega una referencia a la instancia de GUI
+
+    public AgregarVotos(GUI gui) {
+        this.gui = gui;
+        initComponents();
+    }
 
     private JButton agregarButton;
     private JButton volverButton;
@@ -29,9 +38,20 @@ public class AgregarVotos extends JFrame implements ActionListener {
         votosLabel = new JLabel("Votos:");
 
         // Crear un ComboBox para seleccionar candidato
-        String[] candidatos = { "Candidato 1", "Candidato 2", "Candidato 3" };
-        candidatoComboBox = new JComboBox<>(candidatos);
-
+        
+        List<Candidato> candidatos = GUI.getListaCandidatos();
+        if (!candidatos.isEmpty()) {
+            List<String> candidatosNombres = new ArrayList<>();
+            for (Candidato candidato : candidatos) {
+                candidatosNombres.add(candidato.getNombre());
+            }
+            candidatoComboBox = new JComboBox<String>();
+        } else {
+            // Manejar el caso en que la lista de candidatos esté vacía
+            // Puedes mostrar un mensaje de error o realizar alguna otra acción
+            candidatoComboBox = new JComboBox<>();
+        }
+        
         // Campo de texto para ingresar la cantidad de votos
         votosTextField = new JTextField(10);
 
@@ -97,6 +117,20 @@ public class AgregarVotos extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == agregarButton) {
+            // Obtener el nombre del candidato seleccionado
+            String candidatoSeleccionado = (String) candidatoComboBox.getSelectedItem();
+    
+            // Obtener la cantidad de votos desde el JTextField
+            int cantidadVotos = Integer.parseInt(votosTextField.getText());
+    
+            // Actualizar la lista de candidatos en la interfaz GUI
+            List<Candidato> listaCandidatos = GUI.getListaCandidatos();
+            for (Candidato candidato : listaCandidatos) {
+                if (candidato.getNombre().equals(candidatoSeleccionado)) {
+                    candidato.agregarVotos(cantidadVotos);
+                    break;  // No es necesario continuar si ya encontramos el candidato
+                }
+        }
             
         } else if (e.getSource() == volverButton) {
             GUI ventana = new GUI();
@@ -104,8 +138,8 @@ public class AgregarVotos extends JFrame implements ActionListener {
             this.dispose();
         } else if (e.getSource() == resultadoButton) {
             // Abrir una nueva ventana para mostrar los resultados
-            ResultadosGUI resultados = new ResultadosGUI();
-            resultados.setVisible(true);
+            GUI gui = new GUI();
+            new ResultadosGUI(gui);
             this.dispose();
         }
     }
@@ -113,3 +147,4 @@ public class AgregarVotos extends JFrame implements ActionListener {
         new AgregarVotos();
         }
 }
+

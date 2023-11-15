@@ -1,4 +1,3 @@
-
 public class Candidato extends Ciudadano {
     
 
@@ -53,8 +52,11 @@ public class Candidato extends Ciudadano {
         this.votos = votos;
     }
 
+    public void agregarVotos(int cantidad) {
+        votos += cantidad;
+    }
+
 
       
 
     }
-
