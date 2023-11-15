@@ -14,8 +14,19 @@ import java.util.stream.Collectors;
 
 
 public class GUI extends JFrame implements ActionListener {
-    private List<Candidato> listaCandidatos = new ArrayList<>();
+
+    static List<Candidato> listaCandidatos = new ArrayList<>();
     
+    public static List<Candidato> getListaCandidatos() {
+        return listaCandidatos;
+    }
+
+    public static void setListaCandidatos(List<Candidato> listaCandidatos) {
+        GUI.listaCandidatos = listaCandidatos;
+    }
+
+
+
     private JLabel jLabel1;
     private JButton jButton1;
     private JButton jButton2;
