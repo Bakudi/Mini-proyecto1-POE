@@ -1,13 +1,11 @@
-
-
 import javax.swing.*;
 
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
-import java.awt.Dimension;
-
 
 
 public class Agregarventana extends JPanel implements ActionListener {
@@ -29,12 +27,10 @@ public class Agregarventana extends JPanel implements ActionListener {
     private JTextField jTextField6;
     private GUI gui;
 
-    public Agregarventana(GUI gui,List<Candidato> candidatos) {
+    public Agregarventana(GUI gui) {
         this.gui = gui;
-        this.candidatos = candidatos;
         initComponents();
     }
-    private List<Candidato> candidatos;
 
     public void initComponents() {
         JFrame frame = new JFrame("Agregar Ventana");
@@ -84,10 +80,7 @@ public class Agregarventana extends JPanel implements ActionListener {
         jButton1.addActionListener(this);
 
         jButton2.setText("guardar");
-        jButton2.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e) {
-                jButton2ActionPerformed(e);
-            }});
+        jButton2.addActionListener(this);
 
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
@@ -164,54 +157,29 @@ public class Agregarventana extends JPanel implements ActionListener {
         frame.setVisible(true);
     }
 
-    public void jButton2ActionPerformed(ActionEvent evt) {
-        if(evt.getSource() == jButton2){
-        String Nombre = jTextField1.getText();
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == jButton2){
+            String Nombre = jTextField1.getText();
             int cedula = Integer.parseInt(jTextField2.getText());
             Ciudad origen = obtenerCiudad(jTextField3.getText());
             Boolean derecha = Boolean.parseBoolean(jTextField4.getText().toLowerCase());
             Partido partido = obtenerPartidoDesdeTexto(jTextField5.getText());
             String promesas = jTextField6.getText();
             int votos = 0;
-
-            Candidato candidato = new Candidato(Nombre,cedula,origen,derecha,partido,promesas,votos);
-            candidatos.add(candidato);
-            gui.agregarCandidato(candidato);
-            
-    }
-        }
-
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == jButton1) {
-            GUI ventana = new GUI();
-           ventana.setVisible(true);
-           JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-           frame.dispose();
-        }}
-
-    private Ciudad obtenerCiudad(String textoCiudad) {
-        return Ciudad.valueOf(textoCiudad.toLowerCase());
-    }
-
-    private Partido obtenerPartidoDesdeTexto(String textoPartido) {
-        return Partido.valueOf(textoPartido.toLowerCase());
-    }
-
-    public static void main(String[] args) throws Exception {
-        List<Candidato> listaCandidatos = new ArrayList<>();
-        GUI ventana = new GUI();
-            new Agregarventana(ventana,listaCandidatos);
-    }
-}
     
-    }}
-
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == jButton1) {
-            GUI ventana = new GUI();
-           ventana.setVisible(true);
-           JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-            frame.dispose();ain
+            Candidato candidato = new Candidato(Nombre, cedula, origen, derecha, partido, promesas, votos);
+            gui.agregarCandidato(candidato);
+    
+            // Cierra la ventana actual y muestra la GUI principal
+            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            frame.dispose();
+            gui.setVisible(true);
+            }
+            
+            if (e.getSource() == jButton1) {
+            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            frame.dispose();
+            gui.setVisible(true); 
         }
         }
 
@@ -226,7 +194,8 @@ public class Agregarventana extends JPanel implements ActionListener {
     }
 
     public static void main(String[] args) throws Exception {
-        new Agregarventana();
+        GUI gui = new GUI();
+        new Agregarventana(gui);
     }
 }
     
