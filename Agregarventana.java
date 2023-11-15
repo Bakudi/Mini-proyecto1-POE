@@ -1,4 +1,3 @@
-
 import javax.swing.*;
 
 import java.awt.Dimension;
@@ -169,12 +168,15 @@ public class Agregarventana extends JPanel implements ActionListener {
 
             Candidato candidato = new Candidato(Nombre,cedula,origen,derecha,partido,promesas,votos);
             gui.agregarCandidato(candidato);
+            
     }}
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == jButton1) {
             GUI ventana = new GUI();
            ventana.setVisible(true);
+           JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            frame.dispose();
         }
         }
 
@@ -193,4 +195,3 @@ public class Agregarventana extends JPanel implements ActionListener {
     }
 }
     
-

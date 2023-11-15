@@ -1,5 +1,4 @@
 
-
 public class LISTAR extends javax.swing.JDialog {
 
     public LISTAR() {

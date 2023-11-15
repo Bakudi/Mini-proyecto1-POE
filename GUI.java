@@ -1,4 +1,3 @@
-
 import javax.swing.GroupLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -8,16 +7,19 @@ import javax.swing.LayoutStyle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 
 public class GUI extends JFrame implements ActionListener {
-    ArrayList <Candidato> listaCandidatos = new ArrayList<Candidato>();
+    static ArrayList <Candidato> listaCandidatos = new ArrayList<Candidato>();
     public void agregarCandidato(Candidato candidato) {
         listaCandidatos.add(candidato);
     }
 
-    public List<Candidato> getListaCandidatos() {
+    public static List<Candidato> getListaCandidatos() {
         return listaCandidatos;
     }
     private JLabel jLabel1;
@@ -28,6 +30,7 @@ public class GUI extends JFrame implements ActionListener {
     private JButton jButton5;
     private JButton jButton6;
     private Agregarventana agregarventana;
+
 
     public GUI() {
         initComponents();
@@ -147,6 +150,48 @@ public class GUI extends JFrame implements ActionListener {
         }  
     }
 
+    public Candidato obtenerCandidatoGanador() {
+        // Ordenar la lista de candidatos por cantidad de votos en orden descendente
+        List<Candidato> candidatosOrdenados = listaCandidatos.stream()
+                .sorted(Comparator.comparingInt(Candidato::getVotos).reversed())
+                .collect(Collectors.toList());
+
+        // Devolver el primer candidato de la lista (el que tiene más votos)
+        return candidatosOrdenados.isEmpty() ? null : candidatosOrdenados.get(0);
+    }
+
+    public String obtenerPropuestaCandidatoGanador() {
+        Candidato candidatoGanador = obtenerCandidatoGanador();
+        return (candidatoGanador != null) ? candidatoGanador.getPromesas() : "No hay candidato ganador";
+    }
+
+    public Partido obtenerPartidoConMasCandidatos() {
+        // Usar un mapa para contar la cantidad de candidatos por partido
+        Map<Partido, Long> conteoPorPartido = listaCandidatos.stream()
+                .collect(Collectors.groupingBy(Candidato::getPartidoc, Collectors.counting()));
+
+        // Encontrar el partido con más candidatos
+        return conteoPorPartido.entrySet().stream()
+                .max(Map.Entry.comparingByValue())
+                .map(Map.Entry::getKey)
+                .orElse(null);
+    }
+
+    public List<Ciudad> obtenerTop3CiudadesMenosCandidatos() {
+        // Usar un mapa para contar la cantidad de candidatos por ciudad
+        Map<Ciudad, Long> conteoPorCiudad = listaCandidatos.stream()
+                .collect(Collectors.groupingBy(Candidato::getOrigen, Collectors.counting()));
+
+        // Ordenar el mapa por cantidad de candidatos en orden ascendente
+        List<Ciudad> ciudadesOrdenadas = conteoPorCiudad.entrySet().stream()
+                .sorted(Comparator.comparing(Map.Entry::getValue))
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
+
+        // Tomar las primeras 3 ciudades
+        return ciudadesOrdenadas.size() > 2 ? ciudadesOrdenadas.subList(0, 3) : ciudadesOrdenadas;
+    }
+
     
 
     public static void main(String[] args) {
@@ -158,3 +203,4 @@ public class GUI extends JFrame implements ActionListener {
         });
     }
 }
+
