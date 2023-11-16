@@ -31,4 +31,8 @@ public class Ciudadano {
         this.origen = origen;
     }
 
+    public String toString() {
+        return getNombre(); // Suponiendo que tienes un método getNombre en la clase Candidato
+    }
+
 }
