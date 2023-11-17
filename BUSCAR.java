@@ -123,7 +123,10 @@ public class BUSCAR extends javax.swing.JDialog {
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-        
+        if (evt.getSource() == jButton2) {
+            GUI ventana = new GUI();
+           ventana.setVisible(true);
+        }
     }
 
     public static void main(String args[]) {
@@ -139,3 +142,4 @@ public class BUSCAR extends javax.swing.JDialog {
     private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }
+

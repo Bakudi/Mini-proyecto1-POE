@@ -204,6 +204,9 @@ public class GUI extends JFrame implements ActionListener {
     public void agregarCandidato(Candidato candidato) {
         listaCandidatos.add(candidato);
     }
+
+
+    
     
 
     public static void main(String[] args) {
@@ -215,4 +218,3 @@ public class GUI extends JFrame implements ActionListener {
         });
     }
 }
-
