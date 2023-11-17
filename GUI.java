@@ -206,9 +206,6 @@ public class GUI extends JFrame implements ActionListener {
     }
 
 
-    
-    
-
     public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
@@ -218,3 +215,4 @@ public class GUI extends JFrame implements ActionListener {
         });
     }
 }
+
