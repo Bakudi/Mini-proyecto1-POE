@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class ResultadosGUI extends JFrame implements ActionListener {
 
@@ -14,9 +15,12 @@ public class ResultadosGUI extends JFrame implements ActionListener {
     private JTextArea propuestaTextArea;
     private JTextArea partidoTextArea;
     private JTextArea ciudadesTextArea;
+    private GUI gui;
 
-    public ResultadosGUI() {
+    public ResultadosGUI(GUI gui) {
+        this.gui = gui;
         initComponents();
+        mostrarResultados();
     }
 
     public void initComponents() {
@@ -86,16 +90,48 @@ public class ResultadosGUI extends JFrame implements ActionListener {
         setContentPane(panel);
     }
 
+
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == jButton1) {
             GUI ventana = new GUI();
-           ventana.setVisible(true);
-           dispose();
+            ventana.setVisible(true);
+            dispose();
         }
     }
 
+    private void mostrarResultados() {
+        Candidato ganador = gui.obtenerCandidatoGanador();
+        if (ganador != null) {
+            ganadorTextArea.setText("Nombre: " + ganador.getNombre() + "\nCédula: " + ganador.getCedula());
+            propuestaTextArea.setText(gui.obtenerPropuestaCandidatoGanador());
+        } else {
+            ganadorTextArea.setText("No hay candidato ganador");
+            propuestaTextArea.setText("");
+        }
+
+        Partido partidoConMasCandidatos = gui.obtenerPartidoConMasCandidatos();
+        if (partidoConMasCandidatos != null) {
+            partidoTextArea.setText(partidoConMasCandidatos.toString());
+        } else {
+            partidoTextArea.setText("No hay partido con más candidatos");
+        }
+
+        List<Ciudad> top3Ciudades = gui.obtenerTop3CiudadesMenosCandidatos();
+        if (!top3Ciudades.isEmpty()) {
+            StringBuilder ciudadesText = new StringBuilder();
+            for (Ciudad ciudad : top3Ciudades) {
+                ciudadesText.append(ciudad).append("\n");
+            }
+            ciudadesTextArea.setText(ciudadesText.toString());
+        } else {
+            ciudadesTextArea.setText("No hay ciudades con menos candidatos");
+        }
+    }
+
+
     
     public static void main(String args[]) {
-    new ResultadosGUI();
+        GUI gui = new GUI();
+        new ResultadosGUI(gui);
     }
 }

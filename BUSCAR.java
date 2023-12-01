@@ -1,4 +1,4 @@
-
+import javax.swing.JOptionPane;
 
 public class BUSCAR extends javax.swing.JDialog {
 
@@ -32,6 +32,11 @@ public class BUSCAR extends javax.swing.JDialog {
         jScrollPane1.setViewportView(jTextPane1);
 
         jButton1.setText("OK");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton2.setText("Menú de candidatos");
@@ -91,9 +96,39 @@ public class BUSCAR extends javax.swing.JDialog {
 
         pack();
     }
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+        String nombreCandidatoBuscado = jTextPane1.getText();
+
+        Candidato candidatoEncontrado = null;
+        for (Candidato candidato : GUI.getListaCandidatos()) {
+            if (candidato.getNombre().equalsIgnoreCase(nombreCandidatoBuscado)) {
+                candidatoEncontrado = candidato;
+                break;
+            }
+        }
+
+        if (candidatoEncontrado != null) {
+            JOptionPane.showMessageDialog(this, "Candidato encontrado:\n" +
+                    "Nombre: " + candidatoEncontrado.getNombre() + "\n" +
+                    "Cédula: " + candidatoEncontrado.getCedula() + "\n" +
+                    "Origen: " + candidatoEncontrado.getOrigen() + "\n" +
+                    "Derecha: " + candidatoEncontrado.isDerecha() + "\n" +
+                    "Partido: " + candidatoEncontrado.getPartidoc() + "\n" +
+                    "Promesas: " + candidatoEncontrado.getPromesas() + "\n" +
+                    "Votos: " + candidatoEncontrado.getVotos());
+        } else {
+            JOptionPane.showMessageDialog(this, "Candidato no encontrado.");
+        }
+    }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-        
+
+        if (evt.getSource() == jButton2) {
+            GUI ventana = new GUI();
+           ventana.setVisible(true);
+        }
+
     }
 
     public static void main(String args[]) {
@@ -109,4 +144,3 @@ public class BUSCAR extends javax.swing.JDialog {
     private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }
-

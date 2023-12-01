@@ -1,6 +1,9 @@
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
+
+import javax.swing.JOptionPane;
 
 public class BORRAR extends javax.swing.JDialog implements ActionListener {
 
@@ -134,7 +137,23 @@ public class BORRAR extends javax.swing.JDialog implements ActionListener {
     }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-        
+        String candidatoAEliminar = jTextPane1.getText();
+
+        int opcion = JOptionPane.showConfirmDialog(this, "¿Seguro que deseas borrar al candidato " + candidatoAEliminar + "?", "Confirmación", JOptionPane.YES_NO_OPTION);
+
+        if (opcion == JOptionPane.YES_OPTION) {
+            Iterator<Candidato> iterator = GUI.getListaCandidatos().iterator();
+        while (iterator.hasNext()){
+            Candidato objeto = iterator.next();
+            if (objeto.getNombre().equals(jTextPane1.getText())) {
+                iterator.remove();
+                JOptionPane.showMessageDialog(this, "Candidato " + candidatoAEliminar + " borrado exitosamente.");
+            }else{
+                JOptionPane.showMessageDialog(this,"No existe ese candidato.");
+            }
+        }
+            
+        }
     }
 
     
