@@ -1,3 +1,5 @@
+
+
 import javax.swing.GroupLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -7,26 +9,20 @@ import javax.swing.LayoutStyle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 
 public class GUI extends JFrame implements ActionListener {
+    ArrayList <Candidato> listaCandidatos = new ArrayList<Candidato>();
+    public void agregarCandidato(Candidato candidato) {
+        listaCandidatos.add(candidato);
+    }
 
-    static List<Candidato> listaCandidatos = new ArrayList<>();
     
-    public static List<Candidato> getListaCandidatos() {
+
+    public List<Candidato> getListaCandidatos() {
         return listaCandidatos;
     }
-
-    public static void setListaCandidatos(List<Candidato> listaCandidatos) {
-        GUI.listaCandidatos = listaCandidatos;
-    }
-
-
-
     private JLabel jLabel1;
     private JButton jButton1;
     private JButton jButton2;
@@ -35,7 +31,6 @@ public class GUI extends JFrame implements ActionListener {
     private JButton jButton5;
     private JButton jButton6;
     private Agregarventana agregarventana;
-
 
     public GUI() {
         initComponents();
@@ -63,7 +58,7 @@ public class GUI extends JFrame implements ActionListener {
 
         jButton2.setText("actualizar candidato");
         jButton2.addActionListener(this);
-
+        
         jButton3.setText("eliminar candidato");
         jButton3.addActionListener(this);
 
@@ -76,7 +71,7 @@ public class GUI extends JFrame implements ActionListener {
 
 
         jButton6.setText("gestión de votos");
-        jButton6.addActionListener(this);
+        jButton5.addActionListener(this);
 
        GroupLayout layout = new GroupLayout(panel);
         panel.setLayout(layout);
@@ -120,15 +115,16 @@ public class GUI extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == jButton1) {
-            Agregarventana newframe = new Agregarventana(this);
+            Agregarventana newframe = new Agregarventana(this,getListaCandidatos());
            newframe.setVisible(true);
             this.dispose();
         }
         
         if (e.getSource() == jButton2) {
-            Actualizar newframe = new Actualizar();
+            Actualizar newframe = new Actualizar(this,getListaCandidatos());
            newframe.setVisible(true);
             this.dispose();
+
 
         }
         if (e.getSource() == jButton3) {
@@ -146,65 +142,11 @@ public class GUI extends JFrame implements ActionListener {
             listarGUI.setVisible(true);
             this.dispose();
 
-        }
-        if (e.getSource() == jButton6) {
-            AgregarVotos newframe = new AgregarVotos(this); // Pasa la referencia de GUI
-            newframe.setVisible(true);
-            this.dispose();
 
-        }  
+        } 
     }
 
-    public Candidato obtenerCandidatoGanador() {
-        // Ordenar la lista de candidatos por cantidad de votos en orden descendente
-        List<Candidato> candidatosOrdenados = listaCandidatos.stream()
-                .sorted(Comparator.comparingInt(Candidato::getVotos).reversed())
-                .collect(Collectors.toList());
-
-        // Devolver el primer candidato de la lista (el que tiene más votos)
-        return candidatosOrdenados.isEmpty() ? null : candidatosOrdenados.get(0);
-    }
-
-    public String obtenerPropuestaCandidatoGanador() {
-        Candidato candidatoGanador = obtenerCandidatoGanador();
-        return (candidatoGanador != null) ? candidatoGanador.getPromesas() : "No hay candidato ganador";
-    }
-
-    public Partido obtenerPartidoConMasCandidatos() {
-        // Usar un mapa para contar la cantidad de candidatos por partido
-        Map<Partido, Long> conteoPorPartido = listaCandidatos.stream()
-                .collect(Collectors.groupingBy(Candidato::getPartidoc, Collectors.counting()));
-
-        // Encontrar el partido con más candidatos
-        return conteoPorPartido.entrySet().stream()
-                .max(Map.Entry.comparingByValue())
-                .map(Map.Entry::getKey)
-                .orElse(null);
-    }
-
-    public List<Ciudad> obtenerTop3CiudadesMenosCandidatos() {
-        // Usar un mapa para contar la cantidad de candidatos por ciudad
-        Map<Ciudad, Long> conteoPorCiudad = listaCandidatos.stream()
-                .collect(Collectors.groupingBy(Candidato::getOrigen, Collectors.counting()));
-
-        // Ordenar el mapa por cantidad de candidatos en orden ascendente
-        List<Ciudad> ciudadesOrdenadas = conteoPorCiudad.entrySet().stream()
-                .sorted(Comparator.comparing(Map.Entry::getValue))
-                .map(Map.Entry::getKey)
-                .collect(Collectors.toList());
-
-        // Tomar las primeras 3 ciudades
-        return ciudadesOrdenadas.size() > 2 ? ciudadesOrdenadas.subList(0, 3) : ciudadesOrdenadas;
-    }
     
-    public List<Candidato> getCandidatos() {
-        return listaCandidatos;
-    }
-
-    public void agregarCandidato(Candidato candidato) {
-        listaCandidatos.add(candidato);
-    }
-
 
     public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
@@ -215,4 +157,5 @@ public class GUI extends JFrame implements ActionListener {
         });
     }
 }
+
 
