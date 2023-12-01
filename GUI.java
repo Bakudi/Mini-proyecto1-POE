@@ -62,7 +62,7 @@ public class GUI extends JFrame implements ActionListener {
         jButton1.addActionListener(this);
 
         jButton2.setText("actualizar candidato");
-        // ActionListener para jButton2
+        jButton2.addActionListener(this);
 
         jButton3.setText("eliminar candidato");
         jButton3.addActionListener(this);
