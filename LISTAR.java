@@ -3,8 +3,11 @@ import javax.swing.JList;
 
 public class LISTAR extends javax.swing.JDialog {
 
+    private DefaultListModel<String> listModel;
+
     public LISTAR() {
         initComponents();
+        actualizarListaCandidatos();
     }
 
     private void initComponents() {
@@ -19,27 +22,10 @@ public class LISTAR extends javax.swing.JDialog {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Lista de candidatos disponibles:");
-        
 
-        
+        listModel = new DefaultListModel<>();
 
-        jList1.setModel(new javax.swing.DefaultListModel<String>() {
-
-            {
-                int i = 0;
-                DefaultListModel<String> listModel = new DefaultListModel<>();
-        
-                for (Candidato candidato : GUI.listaCandidatos) {
-                    listModel.addElement(GUI.listaCandidatos.get(i).getNombre());
-                    
-                    i++;
-                }
-                
-        
-                jList1.setModel(listModel);
-                pack();
-            }
-        });
+        jList1.setModel(listModel);
         jScrollPane1.setViewportView(jList1);
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -93,30 +79,24 @@ public class LISTAR extends javax.swing.JDialog {
     }
 
     private void actualizarListaCandidatos() {
-    DefaultListModel<String> listModel = new DefaultListModel<>();
-    
-    for (Candidato candidato : GUI.listaCandidatos) {
-        listModel.addElement(candidato.getNombre());
+        listModel.clear();  // Limpiar la lista antes de agregar candidatos
+
+        for (Candidato candidato : GUI.listaCandidatos) {
+            listModel.addElement(candidato.getNombre());
+        }
     }
-    
-    jList1.setModel(listModel);
-    pack(); // Añadido para ajustar el tamaño del diálogo
-}
 
-private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-    if (evt.getSource() == jButton1) {
-        GUI ventana = new GUI();
-       ventana.setVisible(true);
-       this.dispose();
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+        if (evt.getSource() == jButton1) {
+            GUI ventana = new GUI();
+            ventana.setVisible(true);
+            this.dispose();
+        }
     }
-}
-
-
 
     public static void main(String args[]) {
         new LISTAR();
     }
-
 
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -124,5 +104,5 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
 
-
 }
+
