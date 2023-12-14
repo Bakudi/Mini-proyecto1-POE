@@ -1,4 +1,3 @@
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -142,19 +141,27 @@ public class Actualizar extends JPanel implements ActionListener {
                 String atributo = (String) jComboBox1.getSelectedItem();
                 String nuevoValor = jTextField1.getText();
         
-                if ("Nombre".equals(atributo)) {
-                    candidato.setNombre(nuevoValor);
-                } else if ("Cédula".equals(atributo)) {
-                    candidato.setCedula(Integer.parseInt(nuevoValor));
-                } else if ("Origen".equals(atributo)) {
-                    candidato.setOrigen(obtenerCiudad(nuevoValor));
-                } else if ("Derecha".equals(atributo)) {
-                    candidato.setDerecha(Boolean.parseBoolean(nuevoValor));
-                } else if ("Partido".equals(atributo)) {
-                    candidato.setPartidoc(obtenerPartidoDesdeTexto(nuevoValor));
-                } else if ("Promesas".equals(atributo)) {
-                    candidato.setPromesas(nuevoValor);
-                }
+                switch (atributo) {
+                    case "Nombre":
+                        candidato.setNombre(nuevoValor);
+                        break;
+                    case "Cédula":
+                        candidato.setCedula(Integer.parseInt(nuevoValor));
+                        break;
+                    case "Origen":
+                        candidato.setOrigen(obtenerCiudad(nuevoValor));
+                        break;
+                    case "Derecha":
+                        candidato.setDerecha(Boolean.parseBoolean(nuevoValor));
+                        break;
+                    case "Partido":
+                        candidato.setPartidoc(obtenerPartidoDesdeTexto(nuevoValor));
+                        break;
+                    case "Promesas":
+                        candidato.setPromesas(nuevoValor);
+                        break;
+                    default:
+                        break;}
         
                 JOptionPane.showMessageDialog(this, "Candidato actualizado correctamente.");
             }
@@ -165,8 +172,6 @@ public class Actualizar extends JPanel implements ActionListener {
             
                 if (selectedIndex >= 0 && selectedIndex < candidatos.size()) {
                     Candidato candidato = candidatos.get(selectedIndex);
-                    
-                    // Mostrar el nombre del candidato en jTextField1 (esto es un ejemplo, puedes mostrar otros atributos).
                     jTextField1.setText(candidato.getNombre());
                 }
             }
@@ -207,6 +212,6 @@ public class Actualizar extends JPanel implements ActionListener {
             GUI ventana = new GUI();
             new Actualizar(ventana,listaCandidatos);
                 }
-    }
+}
 
 
