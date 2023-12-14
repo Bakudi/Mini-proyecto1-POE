@@ -6,7 +6,7 @@ import java.util.List;
 
 public class AgregarVotos extends JFrame implements ActionListener {
 
-    private GUI gui;  // Agrega una referencia a la instancia de GUI
+    private GUI gui; 
 
     public AgregarVotos(GUI gui) {
         this.gui = gui;
@@ -35,7 +35,7 @@ public class AgregarVotos extends JFrame implements ActionListener {
 
         // Crear un ComboBox para seleccionar candidato
         
-        candidatoComboBox = new JComboBox<>(gui.getCandidatos().toArray(new Candidato[0]));
+        candidatoComboBox = new JComboBox<>(gui.getListaCandidatos().toArray(new Candidato[0]));
         
         // Campo de texto para ingresar la cantidad de votos
         votosTextField = new JTextField(10);

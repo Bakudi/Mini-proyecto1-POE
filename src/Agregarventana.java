@@ -198,4 +198,3 @@ public class Agregarventana extends JPanel implements ActionListener {
         new Agregarventana(gui);
     }
 }
-    
